@@ -15,7 +15,7 @@ const Categories = () => {
 		fetchCategories();
 	}, []);
 
-	if (categories.length === 0) return <div className="loader"></div>;
+	if (categories.length === 0) return <div>Loading...</div>;
 
 	return <FeatureCard cards={categories} />;
 };

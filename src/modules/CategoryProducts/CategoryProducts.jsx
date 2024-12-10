@@ -16,7 +16,7 @@ const CategoryProducts = () => {
 		fetchCategory();
 	}, []);
 
-	if (category.length === 0) return <div className="loader"></div>;
+	if (category.length === 0) return <div>Loading...</div>;
 
 	return (
 		<section className="text-gray-600 body-font">

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Hero from "../../components/Hero/Hero";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import Stats from "../../components/StatCard/Stats";
-import "./Home.css";
 import Categories from "../../components/Categories/Categories";
 
 const Home = () => {
@@ -34,7 +33,7 @@ const Home = () => {
 			{products?.length > 0 ? (
 				<ProductCard products={products} />
 			) : (
-				<div className="loader"></div>
+				<div>Loading...</div>
 			)}
 			<Stats />
 		</>

@@ -26,7 +26,7 @@ const Products = () => {
 			{products?.length > 0 ? (
 				<ProductCard products={products} />
 			) : (
-				<div className="loader"></div>
+				<div>Loading...</div>
 			)}
 		</div>
 	);

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./product.css";
 
 const Product = () => {
 	const { id } = useParams();
@@ -42,7 +41,7 @@ const Product = () => {
 		navigate("/cart");
 	};
 
-	if (!Object.keys(product).length > 0) return <div className="loader"></div>;
+	if (!Object.keys(product).length > 0) return <div>Loading...</div>;
 
 	return (
 		<section className="text-gray-600 body-font overflow-hidden">
