@@ -1,26 +1,35 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../../components/ProductCard/ProductCard";
-import FeatureCard from "../../components/FeatureCard/FeatureCard";
-import "./products.css";
 
 const Products = () => {
-	const [categories, setCategories] = useState([]);
+	const [products, setProducts] = useState([]);
 
-   useEffect(() => {
-      const fetchCategories = async () => {
-         const response = await fetch('https://fakestoreapi.com/products/categories');
-         const data = response.json();         
-         setCategories(data);
-      }
-      fetchCategories();
-   }, [])
+	useEffect(() => {
+		const fetchProducts = async () => {
+			const response = await fetch(
+				"https://fakestoreapi.com/products"
+			);
+			const data = await response.json();
+			setProducts(data);
+		};
+		fetchProducts();
+	}, []);
 
-   if(categories.length === 0) return <div className="loader"></div>
-
-   return (
+	return (
 		<div>
-         <FeatureCard cards={categories} />
-			<ProductCard/>
+			<div className="flex flex-col text-center w-full mt-10">
+				<h2 className="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">
+					PRODUCTS
+				</h2>
+				<h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
+					ALL PRODUCTS
+				</h1>
+			</div>
+			{products?.length > 0 ? (
+				<ProductCard products={products} />
+			) : (
+				<div className="loader"></div>
+			)}
 		</div>
 	);
 };

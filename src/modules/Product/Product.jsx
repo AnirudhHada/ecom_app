@@ -1,20 +1,43 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./product.css";
 
 const Product = () => {
 	const { id } = useParams();
+	const navigate = useNavigate();
 	const [product, setProduct] = useState({});
 
 	useEffect(() => {
 		const fetchProduct = async () => {
          const response = await fetch(`https://fakestoreapi.com/products/${id}`)
          const data = await response.json();
-         console.log(data);
          setProduct(data);
       }
       fetchProduct();
 	}, []);
+
+	const handleCart = (product) => {
+		const cart = JSON.parse(localStorage.getItem('cart')) || [];
+		const isProductExist = cart.find(item => item.id === product.id)
+
+		if(isProductExist) {
+			const updatedCart = cart.map(item => {
+				if(item.id === product.id) {
+					return {
+						...item,
+						quantity: item.quantity + 1
+					}
+				}
+				return item
+			})
+			localStorage.setItem('cart', JSON.stringify(updatedCart))
+		} else {
+			localStorage.setItem('cart', JSON.stringify([...cart, {...product, quantity: 1}]))
+		}
+
+		alert('Product added to cart')
+		navigate('/cart')
+	}
 	
 	if(!Object.keys(product).length > 0) return <div className="loader"></div>
 
@@ -175,7 +198,7 @@ const Product = () => {
 								<button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded mr-5">
 									Buy it now
 								</button>
-								<button className="flex ml-auto border border-indigo-500 py-2 px-6 focus:outline-none hover:bg-indigo-600 hover:text-white rounded">
+								<button className="flex ml-auto border border-indigo-500 py-2 px-6 focus:outline-none hover:bg-indigo-600 hover:text-white rounded" onClick={() => handleCart(product)}>
 									Add to Cart
 								</button>
 							</div>
