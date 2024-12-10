@@ -16,7 +16,10 @@ const FeatureCard = ({ cards = [1, 2, 3] }) => {
 				<div className="flex flex-wrap -m-4">
 					{cards?.map((card) => {
 						return (
-							<Link to={`/categories/${card}`} className="p-4 md:w-1/3 cursor-pointer">
+							<Link
+								to={`/categories/${card}`}
+								className="p-4 md:w-1/3 cursor-pointer"
+							>
 								<div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col shadow-lg">
 									<div className="flex items-center mb-3">
 										<div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
@@ -33,7 +36,7 @@ const FeatureCard = ({ cards = [1, 2, 3] }) => {
 											</svg>
 										</div>
 										<h2 className="text-gray-900 text-lg title-font font-medium capitalize">
-											{card || 'Example card'}
+											{card || "Example card"}
 										</h2>
 									</div>
 									<div className="flex-grow">

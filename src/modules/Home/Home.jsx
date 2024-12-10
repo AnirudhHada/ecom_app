@@ -6,16 +6,18 @@ import "./Home.css";
 import Categories from "../../components/Categories/Categories";
 
 const Home = () => {
-   const [products, setProducts] = useState([]);
+	const [products, setProducts] = useState([]);
 
-   useEffect(() => {
-      const fetchProducts = async () => {
-         const response = await fetch('https://fakestoreapi.com/products?limit=16')
-         const data = await response.json();
-         setProducts(data);
-      }
-      fetchProducts();
-   }, []); 
+	useEffect(() => {
+		const fetchProducts = async () => {
+			const response = await fetch(
+				"https://fakestoreapi.com/products?limit=16"
+			);
+			const data = await response.json();
+			setProducts(data);
+		};
+		fetchProducts();
+	}, []);
 
 	return (
 		<>
@@ -29,10 +31,12 @@ const Home = () => {
 					MOST POPULAR PRODUCTS
 				</h1>
 			</div>
-         {
-            products?.length > 0 ? <ProductCard products={products} /> : <div className="loader"></div>
-         }
-         <Stats />
+			{products?.length > 0 ? (
+				<ProductCard products={products} />
+			) : (
+				<div className="loader"></div>
+			)}
+			<Stats />
 		</>
 	);
 };

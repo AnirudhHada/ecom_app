@@ -8,10 +8,14 @@ const ProductCard = ({ products = [] }) => {
 				<div className="container px-5 py-24 mx-auto">
 					<div className="flex flex-wrap -m-4">
 						{products.map((product) => {
-							const { id, title, price, description, category, image } = product;
+							const { id, title, price, description, category, image } =
+								product;
 
 							return (
-								<Link to={`/product/${id}`} className="lg:w-1/4 md:w-1/2 p-4 w-full border border-opacity-50 shadow-lg rounded-xl mb-5 cursor-pointer">
+								<Link
+									to={`/product/${id}`}
+									className="lg:w-1/4 md:w-1/2 p-4 w-full border border-opacity-50 shadow-lg rounded-xl mb-5 cursor-pointer"
+								>
 									<a className="block relative h-48 rounded overflow-hidden">
 										<img
 											alt={description}

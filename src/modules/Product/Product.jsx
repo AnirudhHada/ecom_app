@@ -9,37 +9,40 @@ const Product = () => {
 
 	useEffect(() => {
 		const fetchProduct = async () => {
-         const response = await fetch(`https://fakestoreapi.com/products/${id}`)
-         const data = await response.json();
-         setProduct(data);
-      }
-      fetchProduct();
+			const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+			const data = await response.json();
+			setProduct(data);
+		};
+		fetchProduct();
 	}, []);
 
 	const handleCart = (product) => {
-		const cart = JSON.parse(localStorage.getItem('cart')) || [];
-		const isProductExist = cart.find(item => item.id === product.id)
+		const cart = JSON.parse(localStorage.getItem("cart")) || [];
+		const isProductExist = cart.find((item) => item.id === product.id);
 
-		if(isProductExist) {
-			const updatedCart = cart.map(item => {
-				if(item.id === product.id) {
+		if (isProductExist) {
+			const updatedCart = cart.map((item) => {
+				if (item.id === product.id) {
 					return {
 						...item,
-						quantity: item.quantity + 1
-					}
+						quantity: item.quantity + 1,
+					};
 				}
-				return item
-			})
-			localStorage.setItem('cart', JSON.stringify(updatedCart))
+				return item;
+			});
+			localStorage.setItem("cart", JSON.stringify(updatedCart));
 		} else {
-			localStorage.setItem('cart', JSON.stringify([...cart, {...product, quantity: 1}]))
+			localStorage.setItem(
+				"cart",
+				JSON.stringify([...cart, { ...product, quantity: 1 }])
+			);
 		}
 
-		alert('Product added to cart')
-		navigate('/cart')
-	}
-	
-	if(!Object.keys(product).length > 0) return <div className="loader"></div>
+		alert("Product added to cart");
+		navigate("/cart");
+	};
+
+	if (!Object.keys(product).length > 0) return <div className="loader"></div>;
 
 	return (
 		<section className="text-gray-600 body-font overflow-hidden">
@@ -52,7 +55,7 @@ const Product = () => {
 					/>
 					<div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
 						<h2 className="text-sm title-font text-gray-500 tracking-widest uppercase">
-						{product?.category}
+							{product?.category}
 						</h2>
 						<h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
 							{product?.title}
@@ -155,9 +158,7 @@ const Product = () => {
 								</a>
 							</span>
 						</div>
-						<p className="leading-relaxed">
-							{product?.description}
-						</p>
+						<p className="leading-relaxed">{product?.description}</p>
 						<div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
 							<div className="flex">
 								<span className="mr-3">Color</span>
@@ -198,7 +199,10 @@ const Product = () => {
 								<button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded mr-5">
 									Buy it now
 								</button>
-								<button className="flex ml-auto border border-indigo-500 py-2 px-6 focus:outline-none hover:bg-indigo-600 hover:text-white rounded" onClick={() => handleCart(product)}>
+								<button
+									className="flex ml-auto border border-indigo-500 py-2 px-6 focus:outline-none hover:bg-indigo-600 hover:text-white rounded"
+									onClick={() => handleCart(product)}
+								>
 									Add to Cart
 								</button>
 							</div>
