@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Products = ({ products = [] }) => {
+const ProductCard = ({ products = [] }) => {
 	return (
 		<div>
 			<section className="text-gray-600 body-font">
@@ -10,7 +11,7 @@ const Products = ({ products = [] }) => {
 							const { id, title, price, description, category, image } = product;
 
 							return (
-								<div className="lg:w-1/4 md:w-1/2 p-4 w-full border border-opacity-50 shadow-lg rounded-xl mb-5 cursor-pointer">
+								<Link to={`/product/${id}`} className="lg:w-1/4 md:w-1/2 p-4 w-full border border-opacity-50 shadow-lg rounded-xl mb-5 cursor-pointer">
 									<a className="block relative h-48 rounded overflow-hidden">
 										<img
 											alt={description}
@@ -30,7 +31,7 @@ const Products = ({ products = [] }) => {
 										</h2>
 										<p className="mt-1 font-serif">₹{price}</p>
 									</div>
-								</div>
+								</Link>
 							);
 						})}
 					</div>
@@ -40,4 +41,4 @@ const Products = ({ products = [] }) => {
 	);
 };
 
-export default Products;
+export default ProductCard;
