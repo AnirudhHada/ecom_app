@@ -15,12 +15,12 @@ const Product = () => {
 		fetchProduct();
 	}, []);
 
-	const handleCart = (product) => {
+	const handleCart = (product, redirect) => {
 		const cart = JSON.parse(localStorage.getItem("cart")) || [];
 		const isProductExist = cart.find((item) => item.id === product.id);
 
 		if (isProductExist) {
-			const updatedCart = cart.map((item, redirect) => {
+			const updatedCart = cart.map((item) => {
 				if (item.id === product.id) {
 					return {
 						...item,

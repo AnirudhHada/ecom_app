@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Hero from "../../components/Hero/Hero";
 import ProductCard from "../../components/ProductCard/ProductCard";
-import Stats from "../../components/StatCard/Stats";
 import Categories from "../../components/Categories/Categories";
+import Testimonials from "../../components/Testimonials/Testimonials";
 
 const Home = () => {
 	const [products, setProducts] = useState([]);
@@ -35,7 +35,7 @@ const Home = () => {
 			) : (
 				<div>Loading...</div>
 			)}
-			<Stats />
+			<Testimonials />
 		</>
 	);
 };

@@ -121,10 +121,10 @@ const Cart = () => {
 									</svg>
 								</div>
 								<span className="text-center w-1/5 font-semibold text-sm">
-									${cart?.price}
+									₹{cart?.price}
 								</span>
 								<span className="text-center w-1/5 font-semibold text-sm">
-									${cart?.price * cart?.quantity}
+									₹{cart?.price * cart?.quantity}
 								</span>
 							</div>
 						);
@@ -152,14 +152,14 @@ const Cart = () => {
 						<span className="font-semibold text-sm uppercase">
 							Items {carts?.length}
 						</span>
-						<span className="font-semibold text-sm">{total?.toFixed(2)}$</span>
+						<span className="font-semibold text-sm">₹{total?.toFixed(2)}</span>
 					</div>
 					<div>
 						<label className="font-medium inline-block mb-3 text-sm uppercase">
 							Shipping
 						</label>
 						<select className="block p-2 text-gray-600 w-full text-sm">
-							<option>Standard shipping - $10.00</option>
+							<option>Standard shipping - ₹10.00</option>
 						</select>
 					</div>
 					<div className="py-10">
@@ -182,7 +182,7 @@ const Cart = () => {
 					<div className="border-t mt-8">
 						<div className="flex font-semibold justify-between py-6 text-sm uppercase">
 							<span>Total cost</span>
-							<span>${(total + 10).toFixed(2)}</span>
+							<span>₹{(total + 10).toFixed(2)}</span>
 						</div>
 						<button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
 							Checkout
