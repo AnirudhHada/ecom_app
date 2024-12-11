@@ -20,7 +20,7 @@ const Product = () => {
 		const isProductExist = cart.find((item) => item.id === product.id);
 
 		if (isProductExist) {
-			const updatedCart = cart.map((item) => {
+			const updatedCart = cart.map((item, redirect) => {
 				if (item.id === product.id) {
 					return {
 						...item,
@@ -38,7 +38,9 @@ const Product = () => {
 		}
 
 		alert("Product added to cart");
-		navigate("/cart");
+		if(redirect) {
+			navigate("/cart");
+		}
 	};
 
 	if (!Object.keys(product).length > 0) return <div>Loading...</div>;
@@ -195,7 +197,7 @@ const Product = () => {
 								₹{product?.price}
 							</span>
 							<div className="flex">
-								<button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded mr-5">
+								<button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded mr-5" onClick={() => handleCart(product, true)}>
 									Buy it now
 								</button>
 								<button
